@@ -1,0 +1,36 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class EmailValidator {
+
+    private static final String EMAIL_REGEX =
+            "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+
+    public static boolean isValidEmail(String email) {
+        return Pattern.matches(EMAIL_REGEX, email);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("=== EMAIL ВАЛИДАТОР ЖҮЙЕСІ ===");
+
+        while (true) {
+            System.out.print("Email енгізіңіз (exit шығу үшін): ");
+            String email = scanner.nextLine();
+
+            if (email.equalsIgnoreCase("exit")) {
+                System.out.println("Бағдарлама тоқтатылды.");
+                break;
+            }
+
+            if (isValidEmail(email)) {
+                System.out.println("Email дұрыс!");
+            } else {
+                System.out.println("Email қате! Қайта енгізіңіз.");
+            }
+        }
+
+        scanner.close();
+    }
+}
